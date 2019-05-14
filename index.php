@@ -123,30 +123,16 @@ $tasks = [
 
                 <table class="tasks">
                     <?php foreach($tasks as $key => $value):?>
-                        <?php if($value['done'] === true):?>
-                            <?php if ($show_complete_tasks === 1):?>
-                                <tr class="tasks__item task <?php if($value['done']===true):?> task--completed<?php endif;?>">
-                                    <td class="task__select">
-                                        <label class="checkbox task__checkbox">
-                                            <input class="checkbox__input visually-hidden" type="checkbox"<?php if($value['done']===true):?> checked<?php endif;?>>
-                                            <span class="checkbox__text"><?php print($value['task']); ?></span>
-                                        </label>
-                                    </td>
-                                    <td class="task__file"></td>
-                                    <td class="task__date"><?php print($value['date']); ?></td>
-                                    <td class="task__controls"></td>
-                                </tr>
-                            <?php endif;?>
-                        <?php else:?>
-                            <tr class="tasks__item task">
+                        <?php if($value['done'] !== true || $show_complete_tasks === 1): ?>
+                            <tr class="tasks__item task <?php $value['done'] === true ? print('task--completed') : '' ?> ">
                                 <td class="task__select">
                                     <label class="checkbox task__checkbox">
-                                        <input class="checkbox__input visually-hidden" type="checkbox">
-                                        <span class="checkbox__text"><?php print($value['task']); ?></span>
+                                        <input class="checkbox__input visually-hidden" type="checkbox"<?php $value['done']===true ? print(' checked') : '' ?>>
+                                        <span class="checkbox__text"><?= $value['task']; ?></span>
                                     </label>
                                 </td>
                                 <td class="task__file"></td>
-                                <td class="task__date"><?php print($value['date']); ?></td>
+                                <td class="task__date"><?= $value['date']; ?></td>
                                 <td class="task__controls"></td>
                             </tr>
                         <?php endif;?>
